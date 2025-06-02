@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/music?serverTimezone=UTC
+    username: root
+    password: Twelve#128@ms
+
+mybatis:
+  type-aliases-package: io.github.Twebubble.musicure.entity
+  mapper-locations: classpath:mappers/*.xml

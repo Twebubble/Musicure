@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.Twebubble.musicure.mapper.UserMapper">
+    <select id="findById" parameterType="int" resultMap="io.github.Twebubble.musicure.entity.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="io.github.Twebubble.musicure.entity.User">
+        INSERT INTO user (username, upassword, email) VALUES (#{username},#{upassword},#{email})
+    </insert>
+
+    <update id="update" parameterType="io.github.Twebubble.musicure.entity.User">
+        UPDATE user SET username = #{username}, upassword = #{upassword}, email = #{email} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+</mapper>
