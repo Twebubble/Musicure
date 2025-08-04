@@ -1,2 +1,31 @@
 # 邮箱认证和登录所需
+spring:
+  mail:
+    host: smtp.qq.com  # QQ 邮箱 SMTP 服务器
+    port: 465          # SSL 加密端口
+    username: twelvebubble@qq.com  # 完整的 QQ 邮箱地址
+    password: ursoiievlsexdjgf  # QQ 邮箱授权码
+    protocol: smtps    # QQ 邮箱要求使用 SMTPS 协议
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
+            required: true  # 必须启用
+          ssl:
+            enable: true    # 必须启用 SSL
+          connectiontimeout: 5000  # 连接超时
+          timeout: 5000     # 传输超时
+          writetimeout: 5000 # 写超时
 
+# 发件人地址（通常与 username 相同）
+mail:
+  address: twelvebubble@qq.com
+
+# 启用 SQL 日志输出
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
