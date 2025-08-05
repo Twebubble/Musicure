@@ -200,6 +200,11 @@
                     <skipTests>true</skipTests><!-- 暂时：打包时跳过测试 -->
                 </configuration>
             </plugin>
+
+            <!--generatorConfig.xml使用-->
+<!--            <plugin>-->
+
+<!--            </plugin>-->
         </plugins>
     </build>
 

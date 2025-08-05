@@ -22,6 +22,7 @@ spring:
           writetimeout: 5000 # 写超时
 
 # 发件人地址（通常与 username 相同）
+# TODO @value对应类
 mail:
   address: twelvebubble@qq.com
 
