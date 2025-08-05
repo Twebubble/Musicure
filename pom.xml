@@ -202,10 +202,74 @@
             </plugin>
 
             <!--generatorConfig.xml使用-->
-<!--            <plugin>-->
-
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.2</version>
+                <configuration>
+                    <!--generatorConfig.xml位置-->
+                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <!--存在mapper就覆写-->
+                    <overwrite>true</overwrite>
+                    <!-- 添加 Java 17+ 支持 -->
+<!--                    <jvmArguments>&#45;&#45;enable-preview</jvmArguments>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!-- 使用项目统一 MySQL 驱动版本 -->
+                    <dependency>
+                        <groupId>com.mysql</groupId>
+                        <artifactId>mysql-connector-j</artifactId>
+                        <version>${mysql.version}</version> <!-- 使用项目统一版本 -->
+                        <scope>runtime</scope>
+                    </dependency>
+                    <!-- MyBatis-Plus 生成器扩展 -->
+                    <dependency>
+                        <groupId>com.baomidou</groupId>
+                        <artifactId>mybatis-plus-generator</artifactId>
+                        <version>3.5.9</version> <!-- 与项目版本一致 -->
+                    </dependency>
+                    <!-- Lombok 支持 -->
+                    <dependency>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${lombok.version}</version> <!-- 使用项目统一版本 -->
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
+        <!--扫描指定的配置文件 如果mapper的xml文件没有放在resources目录下，而是放在了和接口类在一起的包，这里就必须配置-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.csv</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.csv</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>
