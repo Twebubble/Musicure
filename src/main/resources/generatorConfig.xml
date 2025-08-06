@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+        "https://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-
+    <context id="mysqlTables" targetRuntime="MyBatis3">
+        <!-- ================ 插件配置 ================ -->
+        <!--生成序列化接口，生成的pojo，将implements Serializable-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--重命名Example类-->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Impl"/>
+        </plugin>
+        <!--Lombok支持 -->
+        <plugin type="org.mybatis.generator.plugins.LombokPlugin">
+            <property name="hasBuilder" value="true"/>
+        </plugin>
+        <!-- ================ 注释生成器 ================ -->
+        <commentGenerator>
+            <!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 去除所有自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- ================ 数据库连接配置 ================ -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/musicure?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai"
+                userId="root"
+                password="Twelve#128@ms">
+        </jdbcConnection>
+        <!-- ================ 类型解析器 ================ -->
+        <!--默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer-->
+        <!--true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal-->
+        <javaTypeResolver>
+            <!-- 不强制使用BigDecimal -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- ================ 模型生成配置 ================ -->
+        <!--生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，-->
+        <!--也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generator-source目录下-->
+        <javaModelGenerator
+                targetPackage="io.github.Twebubble.musicure.model.domain"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- ================ SQL映射文件生成 ================ -->
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- ================ Mapper接口生成 ================ -->
+        <javaClientGenerator
+                type="XMLMAPPER"
+                targetPackage="io.github.Twebubble.musicure.mapper"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- ================ 表配置 ================ -->
+        <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
+        <!--    配置表信息
+                        tableName  表名
+                        domainObjectName    实体类名称-->
+        <!--写到这里，还没写完表的部分
+        - TODO 表配置待填写
+        -->
+        <table tableName="admain"
+               domainObjectName="Admin"
+/>
+    </context>
 </generatorConfiguration>
