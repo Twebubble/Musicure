@@ -12,10 +12,10 @@
             <property name="searchString" value="Example$"/>
             <property name="replaceString" value="Impl"/>
         </plugin>
-        <!--Lombok支持 -->
-        <plugin type="org.mybatis.generator.plugins.LombokPlugin">
-            <property name="hasBuilder" value="true"/>
-        </plugin>
+        <!--Lombok支持 TODO 这里出问题-->
+<!--        <plugin type="org.mybatis.generator.plugins.LombokPlugin">-->
+<!--            <property name="hasBuilder" value="true"/>-->
+<!--        </plugin>-->
         <!-- ================ 注释生成器 ================ -->
         <commentGenerator>
             <!-- 是否生成注释代时间戳 -->

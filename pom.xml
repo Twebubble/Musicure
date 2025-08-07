@@ -183,6 +183,10 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+<!--        <repository>-->
+<!--            <id>github</id>-->
+<!--            <url>https://maven.pkg.github.com/softwareloop/mybatis-generator-lombok-plugin</url>-->
+<!--        </repository>-->
     </repositories>
 
     <build>
@@ -246,16 +250,16 @@
                     </dependency>
                     <!-- Lombok 生成插件 TODO 这里引入失败，待解决-->
 <!--                    <dependency>-->
-<!--                        <groupId>com.softwareloop</groupId>-->
+<!--                        <groupId>com.softwareloopt-mybatis-generator-lombok-plugin</groupId>-->
 <!--                        <artifactId>mybatis-generator-lombok-plugin</artifactId>-->
 <!--                        <version>1.0</version>-->
 <!--                    </dependency>-->
-                    <!-- Generator 核心库 -->
-                    <dependency>
-                        <groupId>org.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-core</artifactId>
-                        <version>1.4.2</version>
-                    </dependency>
+                     <!--Generator 核心库-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.mybatis.generator</groupId>-->
+<!--                        <artifactId>mybatis-generator-core</artifactId>-->
+<!--                        <version>1.4.2</version>-->
+<!--                    </dependency>-->
                 </dependencies>
             </plugin>
         </plugins>
