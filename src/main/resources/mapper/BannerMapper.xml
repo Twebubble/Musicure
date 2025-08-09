@@ -37,7 +37,7 @@
   <sql id="Base_Column_List">
     id, pic
   </sql>
-  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.BannerImpl" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.BannerServiceImpl" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

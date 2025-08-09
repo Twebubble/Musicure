@@ -1,17 +1,20 @@
 package io.github.Twebubble.musicure.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.Twebubble.musicure.model.domain.RankList;
-import io.github.Twebubble.musicure.service.impl.RankListImpl;
-import java.util.List;
+import io.github.Twebubble.musicure.service.impl.RankListServiceImpl;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface RankListMapper {
+import java.util.List;
+@Mapper
+public interface RankListMapper extends BaseMapper<RankList> {
     int deleteByPrimaryKey(Long id);
 
     int insert(RankList row);
 
     int insertSelective(RankList row);
 
-    List<RankList> selectByExample(RankListImpl example);
+    List<RankList> selectByExample(RankListServiceImpl example);
 
     RankList selectByPrimaryKey(Long id);
 

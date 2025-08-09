@@ -39,7 +39,7 @@
   <sql id="Base_Column_List">
     id, song_list_id, consumer_id, score
   </sql>
-  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.RankListImpl" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.RankListServiceImpl" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

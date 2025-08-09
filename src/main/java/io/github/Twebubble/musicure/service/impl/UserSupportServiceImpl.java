@@ -1,16 +1,18 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
-public class BannerImpl {
+@Service
+public class UserSupportServiceImpl {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BannerImpl() {
+    public UserSupportServiceImpl() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,73 +166,133 @@ public class BannerImpl {
             return (Criteria) this;
         }
 
-        public Criteria andPicIsNull() {
-            addCriterion("pic is null");
+        public Criteria andCommentIdIsNull() {
+            addCriterion("comment_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPicIsNotNull() {
-            addCriterion("pic is not null");
+        public Criteria andCommentIdIsNotNull() {
+            addCriterion("comment_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPicEqualTo(String value) {
-            addCriterion("pic =", value, "pic");
+        public Criteria andCommentIdEqualTo(Integer value) {
+            addCriterion("comment_id =", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotEqualTo(String value) {
-            addCriterion("pic <>", value, "pic");
+        public Criteria andCommentIdNotEqualTo(Integer value) {
+            addCriterion("comment_id <>", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicGreaterThan(String value) {
-            addCriterion("pic >", value, "pic");
+        public Criteria andCommentIdGreaterThan(Integer value) {
+            addCriterion("comment_id >", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicGreaterThanOrEqualTo(String value) {
-            addCriterion("pic >=", value, "pic");
+        public Criteria andCommentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("comment_id >=", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicLessThan(String value) {
-            addCriterion("pic <", value, "pic");
+        public Criteria andCommentIdLessThan(Integer value) {
+            addCriterion("comment_id <", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicLessThanOrEqualTo(String value) {
-            addCriterion("pic <=", value, "pic");
+        public Criteria andCommentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("comment_id <=", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicLike(String value) {
-            addCriterion("pic like", value, "pic");
+        public Criteria andCommentIdIn(List<Integer> values) {
+            addCriterion("comment_id in", values, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotLike(String value) {
-            addCriterion("pic not like", value, "pic");
+        public Criteria andCommentIdNotIn(List<Integer> values) {
+            addCriterion("comment_id not in", values, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicIn(List<String> values) {
-            addCriterion("pic in", values, "pic");
+        public Criteria andCommentIdBetween(Integer value1, Integer value2) {
+            addCriterion("comment_id between", value1, value2, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotIn(List<String> values) {
-            addCriterion("pic not in", values, "pic");
+        public Criteria andCommentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("comment_id not between", value1, value2, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andPicBetween(String value1, String value2) {
-            addCriterion("pic between", value1, value2, "pic");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotBetween(String value1, String value2) {
-            addCriterion("pic not between", value1, value2, "pic");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(String value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(String value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(String value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(String value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(String value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLike(String value) {
+            addCriterion("user_id like", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotLike(String value) {
+            addCriterion("user_id not like", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<String> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<String> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(String value1, String value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(String value1, String value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
     }

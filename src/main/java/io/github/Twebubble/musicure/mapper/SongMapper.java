@@ -1,19 +1,22 @@
 package io.github.Twebubble.musicure.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.Twebubble.musicure.model.domain.Song;
-import io.github.Twebubble.musicure.service.impl.SongImpl;
-import java.util.List;
+import io.github.Twebubble.musicure.service.impl.SongServiceImpl;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface SongMapper {
+import java.util.List;
+@Mapper
+public interface SongMapper extends BaseMapper<Song> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Song row);
 
     int insertSelective(Song row);
 
-    List<Song> selectByExampleWithBLOBs(SongImpl example);
+    List<Song> selectByExampleWithBLOBs(SongServiceImpl example);
 
-    List<Song> selectByExample(SongImpl example);
+    List<Song> selectByExample(SongServiceImpl example);
 
     Song selectByPrimaryKey(Integer id);
 

@@ -1,17 +1,20 @@
 package io.github.Twebubble.musicure.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.Twebubble.musicure.model.domain.Collect;
-import io.github.Twebubble.musicure.service.impl.CollectImpl;
-import java.util.List;
+import io.github.Twebubble.musicure.service.impl.CollectServiceImpl;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface CollectMapper {
+import java.util.List;
+@Mapper
+public interface CollectMapper extends BaseMapper<Collect> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Collect row);
 
     int insertSelective(Collect row);
 
-    List<Collect> selectByExample(CollectImpl example);
+    List<Collect> selectByExample(CollectServiceImpl example);
 
     Collect selectByPrimaryKey(Integer id);
 

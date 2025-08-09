@@ -42,7 +42,7 @@
   <sql id="Base_Column_List">
     id, name, sex, pic, birth, location, introduction
   </sql>
-  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.SingerImpl" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.SingerServiceImpl" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

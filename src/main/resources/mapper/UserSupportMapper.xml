@@ -38,7 +38,7 @@
   <sql id="Base_Column_List">
     id, comment_id, user_id
   </sql>
-  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.UserSupportImpl" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.UserSupportServiceImpl" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

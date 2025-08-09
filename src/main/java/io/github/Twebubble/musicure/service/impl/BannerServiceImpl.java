@@ -1,16 +1,18 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
-public class RankListImpl {
+@Service
+public class BannerServiceImpl {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public RankListImpl() {
+    public BannerServiceImpl() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -114,233 +116,123 @@ public class RankListImpl {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Long value) {
+        public Criteria andIdEqualTo(Integer value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Long value) {
+        public Criteria andIdNotEqualTo(Integer value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Long value) {
+        public Criteria andIdGreaterThan(Integer value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Long value) {
+        public Criteria andIdLessThan(Integer value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Long value) {
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Long> values) {
+        public Criteria andIdIn(List<Integer> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Long> values) {
+        public Criteria andIdNotIn(List<Integer> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Long value1, Long value2) {
+        public Criteria andIdBetween(Integer value1, Integer value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Long value1, Long value2) {
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdIsNull() {
-            addCriterion("song_list_id is null");
+        public Criteria andPicIsNull() {
+            addCriterion("pic is null");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdIsNotNull() {
-            addCriterion("song_list_id is not null");
+        public Criteria andPicIsNotNull() {
+            addCriterion("pic is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdEqualTo(Long value) {
-            addCriterion("song_list_id =", value, "songListId");
+        public Criteria andPicEqualTo(String value) {
+            addCriterion("pic =", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotEqualTo(Long value) {
-            addCriterion("song_list_id <>", value, "songListId");
+        public Criteria andPicNotEqualTo(String value) {
+            addCriterion("pic <>", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdGreaterThan(Long value) {
-            addCriterion("song_list_id >", value, "songListId");
+        public Criteria andPicGreaterThan(String value) {
+            addCriterion("pic >", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("song_list_id >=", value, "songListId");
+        public Criteria andPicGreaterThanOrEqualTo(String value) {
+            addCriterion("pic >=", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdLessThan(Long value) {
-            addCriterion("song_list_id <", value, "songListId");
+        public Criteria andPicLessThan(String value) {
+            addCriterion("pic <", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdLessThanOrEqualTo(Long value) {
-            addCriterion("song_list_id <=", value, "songListId");
+        public Criteria andPicLessThanOrEqualTo(String value) {
+            addCriterion("pic <=", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdIn(List<Long> values) {
-            addCriterion("song_list_id in", values, "songListId");
+        public Criteria andPicLike(String value) {
+            addCriterion("pic like", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotIn(List<Long> values) {
-            addCriterion("song_list_id not in", values, "songListId");
+        public Criteria andPicNotLike(String value) {
+            addCriterion("pic not like", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdBetween(Long value1, Long value2) {
-            addCriterion("song_list_id between", value1, value2, "songListId");
+        public Criteria andPicIn(List<String> values) {
+            addCriterion("pic in", values, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotBetween(Long value1, Long value2) {
-            addCriterion("song_list_id not between", value1, value2, "songListId");
+        public Criteria andPicNotIn(List<String> values) {
+            addCriterion("pic not in", values, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andConsumerIdIsNull() {
-            addCriterion("consumer_id is null");
+        public Criteria andPicBetween(String value1, String value2) {
+            addCriterion("pic between", value1, value2, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andConsumerIdIsNotNull() {
-            addCriterion("consumer_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdEqualTo(Long value) {
-            addCriterion("consumer_id =", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotEqualTo(Long value) {
-            addCriterion("consumer_id <>", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdGreaterThan(Long value) {
-            addCriterion("consumer_id >", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("consumer_id >=", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdLessThan(Long value) {
-            addCriterion("consumer_id <", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdLessThanOrEqualTo(Long value) {
-            addCriterion("consumer_id <=", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdIn(List<Long> values) {
-            addCriterion("consumer_id in", values, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotIn(List<Long> values) {
-            addCriterion("consumer_id not in", values, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdBetween(Long value1, Long value2) {
-            addCriterion("consumer_id between", value1, value2, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotBetween(Long value1, Long value2) {
-            addCriterion("consumer_id not between", value1, value2, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIsNull() {
-            addCriterion("score is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIsNotNull() {
-            addCriterion("score is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreEqualTo(Integer value) {
-            addCriterion("score =", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotEqualTo(Integer value) {
-            addCriterion("score <>", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreGreaterThan(Integer value) {
-            addCriterion("score >", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreGreaterThanOrEqualTo(Integer value) {
-            addCriterion("score >=", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreLessThan(Integer value) {
-            addCriterion("score <", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreLessThanOrEqualTo(Integer value) {
-            addCriterion("score <=", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIn(List<Integer> values) {
-            addCriterion("score in", values, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotIn(List<Integer> values) {
-            addCriterion("score not in", values, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreBetween(Integer value1, Integer value2) {
-            addCriterion("score between", value1, value2, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotBetween(Integer value1, Integer value2) {
-            addCriterion("score not between", value1, value2, "score");
+        public Criteria andPicNotBetween(String value1, String value2) {
+            addCriterion("pic not between", value1, value2, "pic");
             return (Criteria) this;
         }
     }

@@ -1,17 +1,19 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-public class SingerImpl {
+@Service
+public class SingerServiceImpl {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SingerImpl() {
+    public SingerServiceImpl() {
         oredCriteria = new ArrayList<>();
     }
 

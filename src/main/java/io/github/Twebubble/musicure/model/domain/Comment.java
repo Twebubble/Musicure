@@ -1,8 +1,10 @@
 package io.github.Twebubble.musicure.model.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@Component
 public class Comment implements Serializable {
     private Integer id;
 

@@ -50,14 +50,24 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.9</version>
+            <version>3.5.6</version>
             <exclusions>
                 <!-- 添加这个排除 -->
                 <exclusion>
                     <groupId>org.apache.commons</groupId>
                     <artifactId>commons-lang3</artifactId>
                 </exclusion>
+                <!--版本2.1.2过老-->
+                <exclusion>
+                    <artifactId>mybatis-spring</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>3.0.3</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.mybatis.spring.boot</groupId>-->
@@ -69,6 +79,12 @@
 <!--            <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
 <!--            <version>3.0.4</version>-->
 <!--            <scope>test</scope>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.mybatis</groupId>-->
+<!--                    <artifactId>mybatis</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
 <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -183,10 +199,10 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-<!--        <repository>-->
-<!--            <id>github</id>-->
-<!--            <url>https://maven.pkg.github.com/softwareloop/mybatis-generator-lombok-plugin</url>-->
-<!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>github</id>-->
+        <!--            <url>https://maven.pkg.github.com/softwareloop/mybatis-generator-lombok-plugin</url>-->
+        <!--        </repository>-->
     </repositories>
 
     <build>
@@ -205,63 +221,63 @@
                 </configuration>
             </plugin>
 
-            <!--generatorConfig.xml使用-->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.4.2</version>
-                <configuration>
-                    <!--generatorConfig.xml位置-->
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
-                    <verbose>true</verbose>
-                    <!--存在mapper就覆写-->
-                    <overwrite>true</overwrite>
-                    <!-- 添加 Java 17+ 支持 -->
-<!--                    <jvmArguments>&#45;&#45;enable-preview</jvmArguments>-->
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <!-- 使用项目统一 MySQL 驱动版本 -->
-                    <dependency>
-                        <groupId>com.mysql</groupId>
-                        <artifactId>mysql-connector-j</artifactId>
-                        <version>${mysql.version}</version> <!-- 使用项目统一版本 -->
-                        <scope>runtime</scope>
-                    </dependency>
-                    <!-- MyBatis-Plus 生成器扩展 -->
-                    <dependency>
-                        <groupId>com.baomidou</groupId>
-                        <artifactId>mybatis-plus-generator</artifactId>
-                        <version>3.5.9</version> <!-- 与项目版本一致 -->
-                    </dependency>
-                    <!-- Lombok 支持 -->
-                    <dependency>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok</artifactId>
-                        <version>${lombok.version}</version> <!-- 使用项目统一版本 -->
-                    </dependency>
-                    <!-- Lombok 生成插件 TODO 这里引入失败，待解决-->
+            <!--generatorConfig.xml使用,使用完后注释掉了-->
+<!--            <plugin>-->
+<!--                <groupId>org.mybatis.generator</groupId>-->
+<!--                <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+<!--                <version>1.4.2</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;generatorConfig.xml位置&ndash;&gt;-->
+<!--                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>-->
+<!--                    <verbose>true</verbose>-->
+<!--                    &lt;!&ndash;存在mapper就覆写&ndash;&gt;-->
+<!--                    <overwrite>true</overwrite>-->
+<!--                    &lt;!&ndash; 添加 Java 17+ 支持 &ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <jvmArguments>&#45;&#45;enable-preview</jvmArguments>&ndash;&gt;-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>Generate MyBatis Artifacts</id>-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <dependencies>-->
+<!--                    &lt;!&ndash; 使用项目统一 MySQL 驱动版本 &ndash;&gt;-->
 <!--                    <dependency>-->
-<!--                        <groupId>com.softwareloopt-mybatis-generator-lombok-plugin</groupId>-->
-<!--                        <artifactId>mybatis-generator-lombok-plugin</artifactId>-->
-<!--                        <version>1.0</version>-->
+<!--                        <groupId>com.mysql</groupId>-->
+<!--                        <artifactId>mysql-connector-j</artifactId>-->
+<!--                        <version>${mysql.version}</version> &lt;!&ndash; 使用项目统一版本 &ndash;&gt;-->
+<!--                        <scope>runtime</scope>-->
 <!--                    </dependency>-->
-                     <!--Generator 核心库-->
+<!--                    &lt;!&ndash; MyBatis-Plus 生成器扩展 &ndash;&gt;-->
 <!--                    <dependency>-->
-<!--                        <groupId>org.mybatis.generator</groupId>-->
-<!--                        <artifactId>mybatis-generator-core</artifactId>-->
-<!--                        <version>1.4.2</version>-->
+<!--                        <groupId>com.baomidou</groupId>-->
+<!--                        <artifactId>mybatis-plus-generator</artifactId>-->
+<!--                        <version>3.5.9</version> &lt;!&ndash; 与项目版本一致 &ndash;&gt;-->
 <!--                    </dependency>-->
-                </dependencies>
-            </plugin>
+<!--                    &lt;!&ndash; Lombok 支持 &ndash;&gt;-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.projectlombok</groupId>-->
+<!--                        <artifactId>lombok</artifactId>-->
+<!--                        <version>${lombok.version}</version> &lt;!&ndash; 使用项目统一版本 &ndash;&gt;-->
+<!--                    </dependency>-->
+<!--                    &lt;!&ndash; Lombok 生成插件 TODO 这里引入失败，待解决&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <dependency>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <groupId>com.softwareloopt-mybatis-generator-lombok-plugin</groupId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <artifactId>mybatis-generator-lombok-plugin</artifactId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <version>1.0</version>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </dependency>&ndash;&gt;-->
+<!--                    &lt;!&ndash;Generator 核心库&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <dependency>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <groupId>org.mybatis.generator</groupId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <artifactId>mybatis-generator-core</artifactId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <version>1.4.2</version>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </dependency>&ndash;&gt;-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
         </plugins>
         <!--扫描指定的配置文件 如果mapper的xml文件没有放在resources目录下，而是放在了和接口类在一起的包，这里就必须配置-->
         <resources>

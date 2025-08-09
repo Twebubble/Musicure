@@ -49,7 +49,7 @@
   <sql id="Blob_Column_List">
     lyric
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="io.github.Twebubble.musicure.service.impl.SongImpl" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="io.github.Twebubble.musicure.service.impl.SongServiceImpl" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -65,7 +65,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.SongImpl" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.SongServiceImpl" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

@@ -1,16 +1,18 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
-public class ListSongImpl {
+@Service
+public class RankListServiceImpl {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ListSongImpl() {
+    public RankListServiceImpl() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -114,113 +116,53 @@ public class ListSongImpl {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdIsNull() {
-            addCriterion("song_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdIsNotNull() {
-            addCriterion("song_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdEqualTo(Integer value) {
-            addCriterion("song_id =", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdNotEqualTo(Integer value) {
-            addCriterion("song_id <>", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdGreaterThan(Integer value) {
-            addCriterion("song_id >", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("song_id >=", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdLessThan(Integer value) {
-            addCriterion("song_id <", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdLessThanOrEqualTo(Integer value) {
-            addCriterion("song_id <=", value, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdIn(List<Integer> values) {
-            addCriterion("song_id in", values, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdNotIn(List<Integer> values) {
-            addCriterion("song_id not in", values, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdBetween(Integer value1, Integer value2) {
-            addCriterion("song_id between", value1, value2, "songId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("song_id not between", value1, value2, "songId");
             return (Criteria) this;
         }
 
@@ -234,53 +176,173 @@ public class ListSongImpl {
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdEqualTo(Integer value) {
+        public Criteria andSongListIdEqualTo(Long value) {
             addCriterion("song_list_id =", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotEqualTo(Integer value) {
+        public Criteria andSongListIdNotEqualTo(Long value) {
             addCriterion("song_list_id <>", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdGreaterThan(Integer value) {
+        public Criteria andSongListIdGreaterThan(Long value) {
             addCriterion("song_list_id >", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSongListIdGreaterThanOrEqualTo(Long value) {
             addCriterion("song_list_id >=", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdLessThan(Integer value) {
+        public Criteria andSongListIdLessThan(Long value) {
             addCriterion("song_list_id <", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdLessThanOrEqualTo(Integer value) {
+        public Criteria andSongListIdLessThanOrEqualTo(Long value) {
             addCriterion("song_list_id <=", value, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdIn(List<Integer> values) {
+        public Criteria andSongListIdIn(List<Long> values) {
             addCriterion("song_list_id in", values, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotIn(List<Integer> values) {
+        public Criteria andSongListIdNotIn(List<Long> values) {
             addCriterion("song_list_id not in", values, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdBetween(Integer value1, Integer value2) {
+        public Criteria andSongListIdBetween(Long value1, Long value2) {
             addCriterion("song_list_id between", value1, value2, "songListId");
             return (Criteria) this;
         }
 
-        public Criteria andSongListIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andSongListIdNotBetween(Long value1, Long value2) {
             addCriterion("song_list_id not between", value1, value2, "songListId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdIsNull() {
+            addCriterion("consumer_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdIsNotNull() {
+            addCriterion("consumer_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdEqualTo(Long value) {
+            addCriterion("consumer_id =", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdNotEqualTo(Long value) {
+            addCriterion("consumer_id <>", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdGreaterThan(Long value) {
+            addCriterion("consumer_id >", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("consumer_id >=", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdLessThan(Long value) {
+            addCriterion("consumer_id <", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdLessThanOrEqualTo(Long value) {
+            addCriterion("consumer_id <=", value, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdIn(List<Long> values) {
+            addCriterion("consumer_id in", values, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdNotIn(List<Long> values) {
+            addCriterion("consumer_id not in", values, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdBetween(Long value1, Long value2) {
+            addCriterion("consumer_id between", value1, value2, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerIdNotBetween(Long value1, Long value2) {
+            addCriterion("consumer_id not between", value1, value2, "consumerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNull() {
+            addCriterion("score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNotNull() {
+            addCriterion("score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreEqualTo(Integer value) {
+            addCriterion("score =", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotEqualTo(Integer value) {
+            addCriterion("score <>", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThan(Integer value) {
+            addCriterion("score >", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("score >=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThan(Integer value) {
+            addCriterion("score <", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThanOrEqualTo(Integer value) {
+            addCriterion("score <=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIn(List<Integer> values) {
+            addCriterion("score in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotIn(List<Integer> values) {
+            addCriterion("score not in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreBetween(Integer value1, Integer value2) {
+            addCriterion("score between", value1, value2, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
     }
