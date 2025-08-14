@@ -3,10 +3,10 @@ package io.github.Twebubble.musicure.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.Twebubble.musicure.model.domain.Admin;
 //import io.github.Twebubble.musicure.service.impl.AdminServiceImpl;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 //import java.util.List;
-@Mapper
+@Repository
 public interface AdminMapper extends BaseMapper<Admin> {
 //    int deleteByPrimaryKey(Integer id);
 //

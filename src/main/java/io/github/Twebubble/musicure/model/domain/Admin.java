@@ -1,39 +1,23 @@
 package io.github.Twebubble.musicure.model.domain;
 
-import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.io.Serializable;
-@Component
-public class Admin implements Serializable {
+@TableName(value = "admin")
+@Data
+public class Admin {
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String name;
 
     private String password;
 
-    private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
+    @Override
+    public String toString(){
+        return ToStringBuilder.reflectionToString(this);
     }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-}
+ }

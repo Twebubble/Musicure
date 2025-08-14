@@ -6,8 +6,9 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
-
-<!--  <sql id="Base_Column_List">id, name, password</sql>-->
+  <sql id="Base_Column_List">
+       id, name,password
+  </sql>
 
 <!--  <sql id="Example_Where_Clause">-->
 <!--    <where>-->
