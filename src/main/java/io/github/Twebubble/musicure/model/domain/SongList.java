@@ -1,10 +1,18 @@
 package io.github.Twebubble.musicure.model.domain;
 
-import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
-@Component
+
+@TableName(value = "song_list")
+@Data
 public class SongList implements Serializable {
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String title;
@@ -15,45 +23,8 @@ public class SongList implements Serializable {
 
     private String introduction;
 
-    private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic == null ? null : pic.trim();
-    }
-
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style == null ? null : style.trim();
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

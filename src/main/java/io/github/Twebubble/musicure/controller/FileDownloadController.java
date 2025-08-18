@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-//
+//用于从minio桶下载文件
 
 @Controller
 @RequestMapping("/download")

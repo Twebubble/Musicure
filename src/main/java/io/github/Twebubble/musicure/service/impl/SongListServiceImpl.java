@@ -1,471 +1,104 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.github.Twebubble.musicure.common.R;
+import io.github.Twebubble.musicure.controller.MinioUploadController;
+import io.github.Twebubble.musicure.mapper.SongListMapper;
+import io.github.Twebubble.musicure.model.domain.SongList;
+import io.github.Twebubble.musicure.model.request.SongListRequest;
+import io.github.Twebubble.musicure.service.SongListService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
+
 @Service
-public class SongListServiceImpl {
-    protected String orderByClause;
-
-    protected boolean distinct;
-
-    protected List<Criteria> oredCriteria;
-
-    public SongListServiceImpl() {
-        oredCriteria = new ArrayList<>();
-    }
-
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
-    }
-
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
-    }
-
-    public boolean isDistinct() {
-        return distinct;
-    }
-
-    public List<Criteria> getOredCriteria() {
-        return oredCriteria;
-    }
-
-    public void or(Criteria criteria) {
-        oredCriteria.add(criteria);
-    }
-
-    public Criteria or() {
-        Criteria criteria = createCriteriaInternal();
-        oredCriteria.add(criteria);
-        return criteria;
-    }
-
-    public Criteria createCriteria() {
-        Criteria criteria = createCriteriaInternal();
-        if (oredCriteria.size() == 0) {
-            oredCriteria.add(criteria);
-        }
-        return criteria;
-    }
-
-    protected Criteria createCriteriaInternal() {
-        Criteria criteria = new Criteria();
-        return criteria;
-    }
-
-    public void clear() {
-        oredCriteria.clear();
-        orderByClause = null;
-        distinct = false;
-    }
-
-    protected abstract static class GeneratedCriteria {
-        protected List<Criterion> criteria;
-
-        protected GeneratedCriteria() {
-            super();
-            criteria = new ArrayList<>();
-        }
-
-        public boolean isValid() {
-            return criteria.size() > 0;
-        }
-
-        public List<Criterion> getAllCriteria() {
-            return criteria;
-        }
-
-        public List<Criterion> getCriteria() {
-            return criteria;
-        }
-
-        protected void addCriterion(String condition) {
-            if (condition == null) {
-                throw new RuntimeException("Value for condition cannot be null");
-            }
-            criteria.add(new Criterion(condition));
-        }
-
-        protected void addCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            criteria.add(new Criterion(condition, value));
-        }
-
-        protected void addCriterion(String condition, Object value1, Object value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleIsNull() {
-            addCriterion("title is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleIsNotNull() {
-            addCriterion("title is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleEqualTo(String value) {
-            addCriterion("title =", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotEqualTo(String value) {
-            addCriterion("title <>", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleGreaterThan(String value) {
-            addCriterion("title >", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("title >=", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLessThan(String value) {
-            addCriterion("title <", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLessThanOrEqualTo(String value) {
-            addCriterion("title <=", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLike(String value) {
-            addCriterion("title like", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotLike(String value) {
-            addCriterion("title not like", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleIn(List<String> values) {
-            addCriterion("title in", values, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotIn(List<String> values) {
-            addCriterion("title not in", values, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleBetween(String value1, String value2) {
-            addCriterion("title between", value1, value2, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotBetween(String value1, String value2) {
-            addCriterion("title not between", value1, value2, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicIsNull() {
-            addCriterion("pic is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicIsNotNull() {
-            addCriterion("pic is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicEqualTo(String value) {
-            addCriterion("pic =", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicNotEqualTo(String value) {
-            addCriterion("pic <>", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicGreaterThan(String value) {
-            addCriterion("pic >", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicGreaterThanOrEqualTo(String value) {
-            addCriterion("pic >=", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicLessThan(String value) {
-            addCriterion("pic <", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicLessThanOrEqualTo(String value) {
-            addCriterion("pic <=", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicLike(String value) {
-            addCriterion("pic like", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicNotLike(String value) {
-            addCriterion("pic not like", value, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicIn(List<String> values) {
-            addCriterion("pic in", values, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicNotIn(List<String> values) {
-            addCriterion("pic not in", values, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicBetween(String value1, String value2) {
-            addCriterion("pic between", value1, value2, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPicNotBetween(String value1, String value2) {
-            addCriterion("pic not between", value1, value2, "pic");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleIsNull() {
-            addCriterion("style is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleIsNotNull() {
-            addCriterion("style is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleEqualTo(String value) {
-            addCriterion("style =", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleNotEqualTo(String value) {
-            addCriterion("style <>", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleGreaterThan(String value) {
-            addCriterion("style >", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleGreaterThanOrEqualTo(String value) {
-            addCriterion("style >=", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleLessThan(String value) {
-            addCriterion("style <", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleLessThanOrEqualTo(String value) {
-            addCriterion("style <=", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleLike(String value) {
-            addCriterion("style like", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleNotLike(String value) {
-            addCriterion("style not like", value, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleIn(List<String> values) {
-            addCriterion("style in", values, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleNotIn(List<String> values) {
-            addCriterion("style not in", values, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleBetween(String value1, String value2) {
-            addCriterion("style between", value1, value2, "style");
-            return (Criteria) this;
-        }
-
-        public Criteria andStyleNotBetween(String value1, String value2) {
-            addCriterion("style not between", value1, value2, "style");
-            return (Criteria) this;
+public class SongListServiceImpl extends ServiceImpl<SongListMapper, SongList> implements SongListService {
+
+    @Autowired
+    private SongListMapper songListMapper;
+
+    @Value("${minio.bucket-name}")
+    String bucketName;
+
+    @Override
+    public R updateSongListMsg(SongListRequest updateSongListRequest) {
+        SongList songList = new SongList();
+        BeanUtils.copyProperties(updateSongListRequest, songList);
+        if (songListMapper.updateById(songList) > 0) {
+            return R.success("修改成功");
+        } else {
+            return R.error("修改失败");
         }
     }
 
-    public static class Criteria extends GeneratedCriteria {
-        protected Criteria() {
-            super();
+    @Override
+    public R deleteSongList(Integer id) {
+        if (songListMapper.deleteById(id) > 0) {
+            return R.success("删除成功");
+        } else {
+            return R.error("删除失败");
         }
     }
 
-    public static class Criterion {
-        private String condition;
+    @Override
+    public R allSongList() {
+        return R.success(null, songListMapper.selectList(null));
+    }
 
-        private Object value;
+    @Override
+    public List<SongList> findAllSong() {
+        List<SongList> songLists = songListMapper.selectList(null);
+        return songLists;
+    }
 
-        private Object secondValue;
+    @Override
+    public R likeTitle(String title) {
+        QueryWrapper<SongList> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("title",title);
+        return R.success(null, songListMapper.selectList(queryWrapper));
+    }
 
-        private boolean noValue;
+    @Override
+    public R likeStyle(String style) {
+        QueryWrapper<SongList> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("style",style);
+        return R.success(null, songListMapper.selectList(queryWrapper));
+    }
 
-        private boolean singleValue;
-
-        private boolean betweenValue;
-
-        private boolean listValue;
-
-        private String typeHandler;
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
-
-        protected Criterion(String condition) {
-            super();
-            this.condition = condition;
-            this.typeHandler = null;
-            this.noValue = true;
-        }
-
-        protected Criterion(String condition, Object value, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.typeHandler = typeHandler;
-            if (value instanceof List<?>) {
-                this.listValue = true;
-            } else {
-                this.singleValue = true;
-            }
-        }
-
-        protected Criterion(String condition, Object value) {
-            this(condition, value, null);
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.secondValue = secondValue;
-            this.typeHandler = typeHandler;
-            this.betweenValue = true;
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue) {
-            this(condition, value, secondValue, null);
+    @Override
+    public R addSongList(SongListRequest addSongListRequest) {
+        SongList songList = new SongList();
+        BeanUtils.copyProperties(addSongListRequest, songList);
+        //默认歌单封面
+        String pic = "/img/songListPic/123.jpg";
+        songList.setPic(pic);
+        if (songListMapper.insert(songList) > 0) {
+            return R.success("添加成功");
+        } else {
+            return R.error("添加失败");
         }
     }
+
+    @Override
+    public R updateSongListImg(MultipartFile avatorFile, @RequestParam("id") int id) {
+        String fileName =avatorFile.getOriginalFilename();
+        String path="/"+bucketName+"/"+"songlist/";
+        String imgPath = path + fileName;
+        MinioUploadController.uploadSonglistImgFile(avatorFile);
+        SongList songList = new SongList();
+        songList.setId(id);
+        songList.setPic(imgPath);
+        if (songListMapper.updateById(songList) > 0) {
+            return R.success("上传成功", imgPath);
+        } else {
+            return R.error("上传失败");
+        }
+    }
+
 }
