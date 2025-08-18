@@ -1,13 +1,10 @@
 package io.github.Twebubble.musicure.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.Twebubble.musicure.model.domain.Consumer;
-import io.github.Twebubble.musicure.service.impl.ConsumerServiceImpl;
-import org.apache.ibatis.annotations.Mapper;
-import org.checkerframework.checker.units.qual.C;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-@Mapper
+@Repository
 public interface ConsumerMapper extends BaseMapper<Consumer> {
 //    int deleteByPrimaryKey(Integer id);
 //
@@ -22,8 +19,8 @@ public interface ConsumerMapper extends BaseMapper<Consumer> {
 //    int updateByPrimaryKeySelective(Consumer row);
 //
 //    int updateByPrimaryKey(Consumer row);
-
-    int addUser(Consumer consumer);
-
-    List<Consumer> allUser();
+//
+//    int addUser(Consumer consumer);
+//
+//    List<Consumer> allUser();
 }

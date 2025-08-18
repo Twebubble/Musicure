@@ -33,7 +33,7 @@ public class MusicureApplicationTests {
         consumer.setAvator("/img/haha.jpg");
         consumer.setCreateTime(new Date());
         consumer.setUpdateTime(new Date());
-        consumerService.addUser(consumer);
+//        consumerService.addUser(consumer);
     }
 
 }
