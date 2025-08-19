@@ -1,10 +1,19 @@
 package io.github.Twebubble.musicure.model.domain;
 
-import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-@Component
+
+//记录点赞评论和点赞者的关系实体
+
+@TableName(value="user_support")//加否？
+@Data
 public class UserSupport implements Serializable {
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private Integer commentId;
@@ -13,27 +22,45 @@ public class UserSupport implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        UserSupport other = (UserSupport) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+                && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
+                && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()));
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        return result;
     }
 
-    public Integer getCommentId() {
-        return commentId;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", commentId=").append(commentId);
+        sb.append(", userId=").append(userId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
 }
