@@ -1,441 +1,48 @@
 package io.github.Twebubble.musicure.service.impl;
 
+import io.github.Twebubble.musicure.common.R;
+import io.github.Twebubble.musicure.mapper.RankListMapper;
+import io.github.Twebubble.musicure.model.domain.RankList;
+import io.github.Twebubble.musicure.model.request.RankListRequest;
+import io.github.Twebubble.musicure.service.RankListService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 @Service
-public class RankListServiceImpl {
-    protected String orderByClause;
-
-    protected boolean distinct;
-
-    protected List<Criteria> oredCriteria;
-
-    public RankListServiceImpl() {
-        oredCriteria = new ArrayList<>();
-    }
-
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
-    }
-
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
-    }
-
-    public boolean isDistinct() {
-        return distinct;
-    }
-
-    public List<Criteria> getOredCriteria() {
-        return oredCriteria;
-    }
-
-    public void or(Criteria criteria) {
-        oredCriteria.add(criteria);
-    }
-
-    public Criteria or() {
-        Criteria criteria = createCriteriaInternal();
-        oredCriteria.add(criteria);
-        return criteria;
-    }
-
-    public Criteria createCriteria() {
-        Criteria criteria = createCriteriaInternal();
-        if (oredCriteria.size() == 0) {
-            oredCriteria.add(criteria);
-        }
-        return criteria;
-    }
-
-    protected Criteria createCriteriaInternal() {
-        Criteria criteria = new Criteria();
-        return criteria;
-    }
-
-    public void clear() {
-        oredCriteria.clear();
-        orderByClause = null;
-        distinct = false;
-    }
-
-    protected abstract static class GeneratedCriteria {
-        protected List<Criterion> criteria;
-
-        protected GeneratedCriteria() {
-            super();
-            criteria = new ArrayList<>();
-        }
-
-        public boolean isValid() {
-            return criteria.size() > 0;
-        }
-
-        public List<Criterion> getAllCriteria() {
-            return criteria;
-        }
-
-        public List<Criterion> getCriteria() {
-            return criteria;
-        }
-
-        protected void addCriterion(String condition) {
-            if (condition == null) {
-                throw new RuntimeException("Value for condition cannot be null");
-            }
-            criteria.add(new Criterion(condition));
-        }
-
-        protected void addCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            criteria.add(new Criterion(condition, value));
-        }
-
-        protected void addCriterion(String condition, Object value1, Object value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdEqualTo(Long value) {
-            addCriterion("id =", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotEqualTo(Long value) {
-            addCriterion("id <>", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThan(Long value) {
-            addCriterion("id >", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("id >=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThan(Long value) {
-            addCriterion("id <", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThanOrEqualTo(Long value) {
-            addCriterion("id <=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<Long> values) {
-            addCriterion("id in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotIn(List<Long> values) {
-            addCriterion("id not in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdBetween(Long value1, Long value2) {
-            addCriterion("id between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotBetween(Long value1, Long value2) {
-            addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdIsNull() {
-            addCriterion("song_list_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdIsNotNull() {
-            addCriterion("song_list_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdEqualTo(Long value) {
-            addCriterion("song_list_id =", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdNotEqualTo(Long value) {
-            addCriterion("song_list_id <>", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdGreaterThan(Long value) {
-            addCriterion("song_list_id >", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("song_list_id >=", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdLessThan(Long value) {
-            addCriterion("song_list_id <", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdLessThanOrEqualTo(Long value) {
-            addCriterion("song_list_id <=", value, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdIn(List<Long> values) {
-            addCriterion("song_list_id in", values, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdNotIn(List<Long> values) {
-            addCriterion("song_list_id not in", values, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdBetween(Long value1, Long value2) {
-            addCriterion("song_list_id between", value1, value2, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSongListIdNotBetween(Long value1, Long value2) {
-            addCriterion("song_list_id not between", value1, value2, "songListId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdIsNull() {
-            addCriterion("consumer_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdIsNotNull() {
-            addCriterion("consumer_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdEqualTo(Long value) {
-            addCriterion("consumer_id =", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotEqualTo(Long value) {
-            addCriterion("consumer_id <>", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdGreaterThan(Long value) {
-            addCriterion("consumer_id >", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("consumer_id >=", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdLessThan(Long value) {
-            addCriterion("consumer_id <", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdLessThanOrEqualTo(Long value) {
-            addCriterion("consumer_id <=", value, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdIn(List<Long> values) {
-            addCriterion("consumer_id in", values, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotIn(List<Long> values) {
-            addCriterion("consumer_id not in", values, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdBetween(Long value1, Long value2) {
-            addCriterion("consumer_id between", value1, value2, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsumerIdNotBetween(Long value1, Long value2) {
-            addCriterion("consumer_id not between", value1, value2, "consumerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIsNull() {
-            addCriterion("score is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIsNotNull() {
-            addCriterion("score is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreEqualTo(Integer value) {
-            addCriterion("score =", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotEqualTo(Integer value) {
-            addCriterion("score <>", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreGreaterThan(Integer value) {
-            addCriterion("score >", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreGreaterThanOrEqualTo(Integer value) {
-            addCriterion("score >=", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreLessThan(Integer value) {
-            addCriterion("score <", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreLessThanOrEqualTo(Integer value) {
-            addCriterion("score <=", value, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreIn(List<Integer> values) {
-            addCriterion("score in", values, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotIn(List<Integer> values) {
-            addCriterion("score not in", values, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreBetween(Integer value1, Integer value2) {
-            addCriterion("score between", value1, value2, "score");
-            return (Criteria) this;
-        }
-
-        public Criteria andScoreNotBetween(Integer value1, Integer value2) {
-            addCriterion("score not between", value1, value2, "score");
-            return (Criteria) this;
+public class RankListServiceImpl extends ServiceImpl<RankListMapper, RankList> implements RankListService {
+
+    @Autowired
+    private RankListMapper rankMapper;
+
+    @Override
+    public R addRank(RankListRequest rankListAddRequest) {
+        RankList rankList = new RankList();
+        BeanUtils.copyProperties(rankListAddRequest, rankList);
+        if (rankMapper.insert(rankList) > 0) {
+            return R.success("评价成功");
+        } else {
+            return R.error("评价失败");
         }
     }
 
-    public static class Criteria extends GeneratedCriteria {
-        protected Criteria() {
-            super();
-        }
+    //查总评分
+    @Override
+    public R rankOfSongListId(Long songListId) {
+        // 评分总人数如果为 0，则返回0；否则返回计算出的结果
+        QueryWrapper<RankList> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("song_list_id",songListId);
+        Long rankNum = rankMapper.selectCount(queryWrapper);
+        return R.success(null, (rankNum <= 0) ? 0 : rankMapper.selectScoreSum(songListId) / rankNum);
     }
 
-    public static class Criterion {
-        private String condition;
-
-        private Object value;
-
-        private Object secondValue;
-
-        private boolean noValue;
-
-        private boolean singleValue;
-
-        private boolean betweenValue;
-
-        private boolean listValue;
-
-        private String typeHandler;
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
-
-        protected Criterion(String condition) {
-            super();
-            this.condition = condition;
-            this.typeHandler = null;
-            this.noValue = true;
-        }
-
-        protected Criterion(String condition, Object value, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.typeHandler = typeHandler;
-            if (value instanceof List<?>) {
-                this.listValue = true;
-            } else {
-                this.singleValue = true;
-            }
-        }
-
-        protected Criterion(String condition, Object value) {
-            this(condition, value, null);
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.secondValue = secondValue;
-            this.typeHandler = typeHandler;
-            this.betweenValue = true;
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue) {
-            this(condition, value, secondValue, null);
-        }
+    //查指定用户评分
+    @Override
+    public R getUserRank(Long consumerId, Long songListId) {
+        Integer i = rankMapper.selectUserRank(consumerId, songListId);
+        return R.success(null, i);
     }
+
 }
