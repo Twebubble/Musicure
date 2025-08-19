@@ -1,11 +1,16 @@
 package io.github.Twebubble.musicure.model.domain;
 
-import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.io.Serializable;
 import java.util.Date;
-@Component
-public class Song implements Serializable {
+
+@TableName(value = "song")
+@Data
+public class Song {
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private Integer singerId;
@@ -14,8 +19,10 @@ public class Song implements Serializable {
 
     private String introduction;
 
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     private String pic;
@@ -24,77 +31,8 @@ public class Song implements Serializable {
 
     private String lyric;
 
-    private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getSingerId() {
-        return singerId;
-    }
-
-    public void setSingerId(Integer singerId) {
-        this.singerId = singerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic == null ? null : pic.trim();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
-
-    public String getLyric() {
-        return lyric;
-    }
-
-    public void setLyric(String lyric) {
-        this.lyric = lyric == null ? null : lyric.trim();
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
