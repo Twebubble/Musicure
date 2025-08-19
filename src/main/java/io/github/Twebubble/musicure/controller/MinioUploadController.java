@@ -12,6 +12,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
+//上传到minio的controller
+
 @Service
 public class MinioUploadController {
 
