@@ -25,12 +25,15 @@ export function formatDate(cellValue) {
 }
 
 // 解析歌词
+// 标准LRC歌词格式：[01:10.200] 歌词文本
+// 函数返回结果：[……[70.2, "歌词文本"]……]
 export function parseLyric(text) {
     let lines = text.split("\n");
     const pattern = /\[\d{2}:\d{2}.(\d{3}|\d{2})\]/g;
     const result = [];
 
     // 对于歌词格式不对的特殊处理
+    // 非标准歌词格式：如果文本中完全不包含时间标签，会将整个文本作为0时刻的歌词
     if (!/\[.+\]/.test(text)) {
         return [[0, text]];
     }

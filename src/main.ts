@@ -7,4 +7,17 @@ import "element-plus/dist/index.css"
 
 // assets中的一些内容没加上
 
-createApp(App).use(store).use(router).mount('#app')
+// 有一个import没加
+import { Store } from "vuex";
+
+declare module "@vue/runtime-core" {
+    interface State {
+        count: number;
+    }
+
+    interface ComponentCustomProperties {
+        $store: Store<State>;
+    }
+}
+
+createApp(App).use(store).use(router).use(ElementPlus).mount("#app");
