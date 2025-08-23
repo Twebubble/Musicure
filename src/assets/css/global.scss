@@ -1,0 +1,24 @@
+@import "var.scss";
+
+// 全局基础样式
+
+// 可重用的样式代码块
+// 上下左右居中，Flex 布局
+@mixin layout($justify-content: flex-start, $align-items: stretch, $flex-direction: row, $flex-wrap: nowrap) {
+    display: flex;
+    justify-content: $justify-content;  // 主轴对齐方式（起始位置对齐）
+    align-items: $align-items;          // 交叉轴对齐方式（拉伸填满）
+    flex-direction: $flex-direction;    // 主轴方向
+    flex-wrap: $flex-wrap;              // 换行方式
+}
+
+// 图标
+@mixin icon($size: 1.5em, $color: $color-black) {
+    width: $size;
+    height: $size;
+    font-size: $size;
+    color: $color;
+    fill: currentColor; // 让 SVG 图标继承父元素的颜色
+    overflow: hidden;   // 隐藏超出图标区域的内容
+    position: relative; //为可能的定位子元素提供定位上下文
+}

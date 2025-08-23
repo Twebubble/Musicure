@@ -1,0 +1,74 @@
+@import "./var.scss";
+@import "./global.scss";
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+hr,
+img,
+a,
+form,
+label,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+ul,
+li {
+    // 移除列表项前的默认标记（圆点、数字等），使列表项水平排列而不是垂直堆叠（适合导航菜单等场景）
+    list-style: none;
+    display: inline-block;
+}
+
+.pagination {
+    // 居中的分页组件，并稍微向下偏移
+    @include layout(center);
+    transform: translateY(15px);
+}
+
+@media screen and (min-width: $sm) {
+    // 在中等及以上屏幕尺寸上调整播放列表容器的边距
+    .play-list-container {
+        margin: 0 8% 30px 8%;
+    }
+}
+
+/*el*/
+.el-select-dropdown__item {
+    // 强制将选项设置为块级元素，下拉选项垂直排列（每个选项占一行）
+    display: block !important;
+}

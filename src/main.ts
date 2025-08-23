@@ -4,11 +4,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import "element-plus/dist/index.css"
+import "./assets/css/index.scss";
+import "./assets/icons/index.js";
 
-// assets中的一些内容没加上
 
 // 有一个import没加
 import { Store } from "vuex";
+import { ComponentCustomProperties } from "vue";
 
 declare module "@vue/runtime-core" {
     interface State {
