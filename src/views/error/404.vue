@@ -13,7 +13,7 @@
     flex-wrap: nowrap;
     width: 100%;
     height: 100%;
-    padding: 11rem 0;
+    padding: 11rem 0;   /*11倍的根元素字体大小*/
     box-sizing: border-box;
 }
 
