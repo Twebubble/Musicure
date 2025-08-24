@@ -22,7 +22,7 @@ export default defineComponent({
         // styleList: Array,
         // activeName: String,
         styleList: {
-            ttype: Array as PropType<NavItem[]>,
+            type: Array as PropType<NavItem[]>,
             default: () => [] as NavItem[]
         },
         activeName: {
