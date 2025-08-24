@@ -19,8 +19,10 @@ export default defineComponent({
         const { proxy } = getCurrentInstance();
         const store = useStore();
 
-        const currentSongList = ref([]); // 存放的音乐
+        const currentSongList = ref([]); // 存放的音乐，创建了一个响应式引用，初始值为空数组
+        //创建一个计算属性，从 Vuex store 中获取搜索关键词
         const searchWord = computed(() => store.getters.searchWord);
+        // 监听搜索关键词的变化，并在变化时执行搜索函数
         watch(searchWord, (value) => {
             searchSong(value);
         });
