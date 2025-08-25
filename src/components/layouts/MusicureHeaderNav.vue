@@ -16,7 +16,6 @@ interface NavItem {
     name: string;
 }
 
-
 export default defineComponent({
     props: {
         // styleList: Array,
