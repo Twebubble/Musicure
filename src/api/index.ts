@@ -11,7 +11,15 @@ const HttpManager = {
     signIn: ({ username, password }) => post(`user/login/status`, { username, password }),
     signInByemail: ({ email, password }) => post(`user/email/status`, { email, password }),
     // 注册
-    SignUp: ({ username, password, sex, phoneNum, email, birth, introduction, location }) => post(`user/add`, { username, password, sex, phoneNum, email, birth, introduction, location }),
+    SignUp: ({ username, password, sex, phoneNum, email, birth, introduction, location }) => 
+        post(`user/add`, 
+            { username, password, sex, phoneNum, email, birth, introduction, location },
+            // {
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=UTF-8' // 单独为这个请求设置JSON格式
+            //     }
+            // }
+        ),
     // 删除用户
     deleteUser: (id) => get(`user/delete?id=${id}`),
     // 更新用户信息
