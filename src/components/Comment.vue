@@ -160,6 +160,13 @@ const attachImageUrl = HttpManager.attachImageUrl;
 
 </script>
 
+<!-- 解决SongSheetDetail.vue导入问题 -->
+<script lang="ts">
+export default {
+    name: 'Comment'
+}
+</script>
+
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 @import "@/assets/css/global.scss";

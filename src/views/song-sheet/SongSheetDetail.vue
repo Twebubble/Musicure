@@ -123,4 +123,77 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+
+.album-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+
+    .album-img {
+        height: 250px;
+        width: 250px;
+        border-radius: 10%;
+    }
+
+    .album-info {
+        width: 70%;
+        padding-top: 2rem;
+    }
+}
+
+.album-main {
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        color: rgba(0, 0, 0, 0.5);
+        margin: 10px 0 20px 0px;
+    }
+
+    /*歌单打分*/
+    .album-score {
+        display: flex;
+        align-items: center;
+        margin: 1vw;
+
+        h3 {
+            margin: 10px 0;
+        }
+
+        span {
+            font-size: 60px;
+        }
+
+        &>div:last-child {
+            margin-left: 10%;
+        }
+    }
+
+    .album-body {
+        margin: 20px 0 20px 0px;
+    }
+}
+
+@media screen and (min-width: $sm) {
+    .album-slide {
+        position: fixed;
+        width: 400px;
+    }
+
+    .album-main {
+        min-width: 600px;
+        padding-right: 10vw;
+        margin-left: 400px;
+    }
+}
+
+@media screen and (max-width: $sm) {
+    .album-slide {
+        display: none;
+    }
+}
+</style>

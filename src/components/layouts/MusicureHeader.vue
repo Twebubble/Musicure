@@ -160,7 +160,8 @@ export default defineComponent({
     cursor: pointer;
 
     .icon {
-        @include icon(1.9rem, $color-black);
+        // @include icon(1.9rem, $color-black);
+        @include icon(1.9rem, $color-green);
         vertical-align: middle;
     }
 
@@ -179,7 +180,7 @@ export default defineComponent({
     width: 100%;
 
     &::v-deep input {
-        text-indent: 5px;
+        text-indent: 10px;
         max-width: $header-search-max-width;
         min-width: $header-search-min-width;
         border-radius: $header-search-radius;
