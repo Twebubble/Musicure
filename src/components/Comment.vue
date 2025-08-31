@@ -259,17 +259,25 @@ export default {
 
             .el-icon {
                 margin: 0 10px;
+                &:hover,
+                :deep(.icon):hover {
+                    color: $color-grey;
+                }
             }
-
-            &:hover,
-            :deep(.icon):hover {
-                color: $color-grey;
-            }
+            // &:hover,
+            // :deep(.icon):hover {
+            //     color: $color-grey;
+            // }
         }
     }
 }
 
 .icon {
     @include icon(1em);
+
+    &:hover,
+    :deep(.icon):hover {
+        color: $color-grey;
+    }
 }
 </style>

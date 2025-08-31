@@ -75,9 +75,18 @@ export default defineComponent({
 
         async function getUserRank(userId, songListId) {
             const result = (await HttpManager.getUserRank(userId, songListId)) as ResponseBody;
-            nowScore.value = result.data / 2;
-            disabledRank.value = true;
-            assistText.value = "已评价";
+            // 返回的result.data为0表示用户没有评过分
+            if (result.data && result.data > 0) {
+                nowScore.value = result.data / 2;
+                disabledRank.value = true;
+                assistText.value = "已评价";
+            } else {
+                // 确保用户没有评过分时，评分组件是可用的
+                disabledRank.value = false;
+                assistText.value = "评价";
+                // 设置一个初始分数0
+                nowScore.value = 0;
+            }
         }
 
         // 提交评分
