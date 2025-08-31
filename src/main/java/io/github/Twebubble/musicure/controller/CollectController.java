@@ -20,7 +20,7 @@ public class CollectController {
     }
 
     //取消收藏的歌曲
-    @PostMapping("/collection/delete")
+    @DeleteMapping("/collection/delete")
     public R deleteCollection(@RequestParam Integer userId, @RequestParam Integer songId) {
         return collectService.deleteCollect(userId, songId);
     }
