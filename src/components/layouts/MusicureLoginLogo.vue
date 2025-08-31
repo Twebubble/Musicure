@@ -1,6 +1,7 @@
 <template>
     <div class="login-logo">
-        <musicure-icon :icon="icon"></musicure-icon>
+        <!-- <musicure-icon :icon="icon"></musicure-icon> -->
+        <el-image class="logo-img" fit="contain" :src="require('@/assets/images/logo.png')" />
     </div>
 </template>
 
@@ -11,7 +12,7 @@ import { Icon } from "@/enums";
 
 export default defineComponent({
     components: {
-        MusicureIcon,
+        // MusicureIcon,
     },
     data() {
         return {
@@ -26,15 +27,19 @@ export default defineComponent({
 @import "@/assets/css/global.scss";
 
 .login-logo {
-    background-color: $color-blue-light;
+    // background-color: $color-blue-light;
     height: calc(100vh - $header-height - $footer-height);
     min-width: 50vw;
     overflow: hidden;
     @include layout(center, center);
 
-    .icon {
-        @include icon(36rem, $color-blue-dark);
-        transform: rotate(-30deg);
+    // .icon {
+    //     @include icon(36rem, $color-blue-dark);
+    //     transform: rotate(-30deg);
+    // }
+    .logo-img {
+        width: 100%;
+        align-self: flex-start;
     }
 }
 
