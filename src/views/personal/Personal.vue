@@ -2,7 +2,7 @@
     <div class="personal">
         <div class="personal-info">
             <div class="personal-img" @click="dialogTableVisible = true">
-                <el-image fit="contain" :src="attachImageUrl(userPic)" />
+                <el-image  fit="cover" :src="attachImageUrl(userPic)" />
             </div>
             <div class="personal-msg">
                 <div class="username">{{ personalInfo.username }}</div>
@@ -142,6 +142,18 @@ export default defineComponent({
         top: -180px;
         left: 50px;
         cursor: pointer;
+        overflow: hidden;
+        // 确保 el-image 填满容器
+        .el-image {
+            width: 100%;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center; // 确保图片居中显示
+            }
+        }
     }
 
     .personal-msg {

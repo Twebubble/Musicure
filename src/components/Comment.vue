@@ -9,7 +9,7 @@
     </div>
     <ul class="popular">
         <li v-for="(item, index) in commentList" :key="index">
-            <el-image class="popular-img" fit="contain" :src="attachImageUrl(item.avator)" />
+            <el-image class="popular-img" fit="cover" :src="attachImageUrl(item.avator)" />
             <div class="popular-msg">
                 <ul>
                     <li class="name">{{ item.username }}</li>
@@ -210,6 +210,20 @@ export default {
 
         .popular-img {
             width: 50px;
+            height: 50px;
+            border-radius: 50%; // 圆形头像
+            border: 5px solid $color-white; // 白色边框
+            overflow: hidden;
+            .el-image {
+                width: 100%;
+                height: 100%;
+                img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center center; // 确保图片居中显示
+                    }
+            }
         }
 
         .popular-msg {
@@ -226,10 +240,12 @@ export default {
             }
 
             .name {
-                color: rgba(0, 0, 0, 0.5);
+                color: rgb(0, 0, 0);
+                // text-shadow: 2px;
             }
 
             .content {
+                margin-top: 5px;
                 font-size: 1rem;
             }
         }

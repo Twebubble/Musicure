@@ -70,7 +70,7 @@ export default defineComponent({
 }
 
 @media screen and (min-width: $sm) {
-    .yin-nav {
+    .musicure-nav {
         li {
             margin: 0.5rem 1rem;
         }
@@ -78,7 +78,7 @@ export default defineComponent({
 }
 
 @media screen and (max-width: $sm) {
-    .yin-nav {
+    .musicure-nav {
         li {
             margin: 0.3rem 0.4rem;
         }

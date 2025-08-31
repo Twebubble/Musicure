@@ -17,7 +17,7 @@
             @click="goPage"></musicure-header-nav>
         <!-- 已登录 -->
         <el-dropdown class="user-wrap" v-if="token" trigger="click">
-            <el-image class="user" fit="contain" :src="attachImageUrl(userPic)" />
+            <el-image class="user" fit="cover" :src="attachImageUrl(userPic)" />
             <template #dropdown>
                 <el-dropdown-menu>
                     <el-dropdown-item v-for="(item, index) in menuList" :key="index"
@@ -179,14 +179,30 @@ export default defineComponent({
     margin: 0 20px;
     width: 100%;
 
-    &::v-deep input {
+    // 关键修改：让 el-input 填满整个容器
+    :deep(.el-input) {
+        width: 100%;
+    }
+
+    // &::v-deep input {
+    //     text-indent: 10px;
+    //     max-width: $header-search-max-width;
+    //     min-width: $header-search-min-width;
+    //     border-radius: $header-search-radius;
+    //     box-shadow: none;
+    //     background-color: $color-light-grey;
+    //     color: $color-black;
+    // }
+    :deep(.el-input__inner) {
         text-indent: 10px;
-        max-width: $header-search-max-width;
-        min-width: $header-search-min-width;
+        width: 100%; // 确保输入框宽度100%
         border-radius: $header-search-radius;
         box-shadow: none;
-        background-color: $color-light-grey;
+        // background-color: $color-light-grey;
         color: $color-black;
+        // 移除 max-width 和 min-width 限制
+        max-width: none;
+        min-width: 0;
     }
 }
 
