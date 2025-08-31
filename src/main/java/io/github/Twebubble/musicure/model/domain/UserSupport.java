@@ -18,7 +18,7 @@ public class UserSupport implements Serializable {
 
     private Integer commentId;
 
-    private String userId;
+    private Integer userId;
 
     private static final long serialVersionUID = 1L;
 
