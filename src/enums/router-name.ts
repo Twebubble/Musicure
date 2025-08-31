@@ -4,6 +4,7 @@ export const enum RouterName {
     SongSheetDetail = "/song-sheet-detail",
     Singer = "/singer",
     SingerDetail = "/singer-detail",
+    Emotion = "/emotion",
     Personal = "/personal",
     Setting = "/setting",
     PersonalData = "/personal-data",
