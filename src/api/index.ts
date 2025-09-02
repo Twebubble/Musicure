@@ -102,6 +102,9 @@ const HttpManager = {
 
     //获取所有的海报
     getBannerList: () => get("banner/getAllBanner")
+
+    //======================> 情绪相关的API
+    
 };
 
 
