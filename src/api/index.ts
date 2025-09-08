@@ -100,13 +100,13 @@ const HttpManager = {
     // 对某条评论进行点赞
     insertUserSupport: ({ commentId, userId }) => post(`userSupport/insert`, { commentId, userId }),
 
-    //获取所有的海报
-    getBannerList: () => get("banner/getAllBanner")
+    // 获取所有的海报
+    getBannerList: () => get("banner/getAllBanner"),
 
     //======================> 情绪相关的API
-    
+    // 获取脑电数据
+    getEEGDataOfUser: ({userId, dataPoints = 300}) => get(`data/${userId}?dataPoints=${dataPoints}`),
+
 };
-
-
 
 export { HttpManager };

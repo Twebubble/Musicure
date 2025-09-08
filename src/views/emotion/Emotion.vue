@@ -1,7 +1,13 @@
 <template>
     <!-- 当前情绪类别（二分类） -->
     <div class="emotionclass">
-        <el-card class="header"></el-card>
+        <el-card class="header">
+        <!-- 在适当位置添加刷新按钮 -->
+        <el-button @click="refreshData" type="primary" :loading="loading">
+            刷新脑电数据
+        </el-button>
+        </el-card>
+
     </div>
     <!-- 脑电波形图 -->
     <!-- direction="vertical" -->
@@ -37,31 +43,68 @@
         </el-card>
         <!-- 根据情绪推荐的歌单 -->
         <el-card class="SongSheet">
-            <div class="personal-body">
+            <div class="title">根据您的情绪状态为您推荐以下歌曲：</div>
+            <el-divider border-style="dashed" />
+            <div class="sheet">
                 <!-- 展示用户收藏的歌曲，当歌曲列表变化时重新加载数据 -->
-                <!-- <song-list :songList="collectSongList" :show="true" @changeData="changeData"></song-list> -->
-                <div v-for="i in 2" :key="i">
-                    <el-button> button {{ i }} </el-button>
-                </div>
+                <song-list :songList="collectSongList" :show="true" @changeData="changeData"></song-list>
             </div>
         </el-card>
     </el-space>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { TrendCharts, Orange } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
 import { GridComponentOption, XAXisComponentOption, YAXisComponentOption, SeriesOption} from 'echarts';
 
-// import { useStore } from "vuex";
-// import SongList from "@/components/SongList.vue";
+import { useStore } from "vuex";
+import SongList from "@/components/SongList.vue";
+import Upload from "../setting/Upload.vue";
+import mixin from "@/mixins/mixin";
+import { HttpManager } from "@/api";
+import { RouterName } from "@/enums";
 
-// 定义类型
-interface TableDataItem {
-    name: string;
-    data: number[];
+const store = useStore();
+const { routerManager } = mixin();
+const collectSongList = ref([]); // 收藏的歌曲
+const userId = computed(() => store.getters.userId);
+
+// 获取收藏的歌曲
+async function getCollection(userId) {
+    collectSongList.value = [];
+    const result = (await HttpManager.getCollectionOfUser(userId)) as ResponseBody;
+    const collectIDList = result.data || []; // 存放收藏的歌曲ID
+
+    // 通过歌曲ID获取歌曲信息
+    for (const item of collectIDList) {
+        if (!item.songId) {
+            console.error(`歌曲${item}异常`);
+            continue;
+        }
+
+        const result = (await HttpManager.getSongOfId(item.songId)) as ResponseBody;
+        collectSongList.value.push(result.data[0]);
+    }
 }
+
+// 重新加载收藏歌曲数据
+function changeData() {
+    getCollection(userId.value);
+}
+
+// 重新加载脑电数据
+const loading = ref(false);
+
+// 刷新数据
+async function refreshData() {
+    loading.value = true;
+    await fetchEEGData();
+    loading.value = false;
+}
+
+// ===========================> 绘图相关
 
 // 获取 DOM 元素的引用（用于初始化图表）
 const chartRef = ref(null)
@@ -86,45 +129,108 @@ const colorArray = ref<string[]>([
     '#1a48a8', '#0c4e99'
 ])
 
-// ===========================> 数据虚拟
-const timeData = ref<string[]>([])
-const startTime = new Date()
-startTime.setHours(0, 0, 0, 0)
+// ===========================> 数据模拟
+// const timeData = ref<string[]>([])
+// const startTime = new Date()
+// startTime.setHours(0, 0, 0, 0)
 
-// 生成时间序列 (10秒数据，每秒一个点)
-for (let i = 0; i < 300; i++) {
-    const time = new Date(startTime.getTime() + i * 1000)
-    timeData.value.push(time.toTimeString().substring(0, 8))
+// // 生成时间序列 (10秒数据，每秒一个点)
+// for (let i = 0; i < 300; i++) {
+//     const time = new Date(startTime.getTime() + i * 1000)
+//     timeData.value.push(time.toTimeString().substring(0, 8))
+// }
+
+// // 生成模拟脑电数据
+// const generateEEGData = (): TableDataItem[] => {
+//     return channelNames.map((name, index) => {
+//         const data: number[] = []
+//         // 为每个通道生成略有不同的波形
+//         const baseAmplitude = 20 + Math.random() * 30
+//         const frequency = 0.5 + Math.random() * 0.5
+
+//         for (let i = 0; i < 300; i++) {
+//             // 模拟脑电信号
+//             const value = baseAmplitude * Math.sin(frequency * i) + (Math.random() - 0.5) * 10
+//             data.push(parseFloat(value.toFixed(2)))
+//         }
+
+//         return { name, data }
+//     })
+// }
+
+// const tableData = ref<TableDataItem[]>(generateEEGData())
+
+// ===========================> 从后端获得脑电数据
+// 定义类型
+interface TableDataItem {
+    name: string;
+    data: number[];
 }
 
-// 生成模拟脑电数据
-const generateEEGData = (): TableDataItem[] => {
-    return channelNames.map((name, index) => {
-        const data: number[] = []
-        // 为每个通道生成略有不同的波形
-        const baseAmplitude = 20 + Math.random() * 30
-        const frequency = 0.5 + Math.random() * 0.5
+interface EEGResponse {
+    code: number;
+    message: string;
+    type: string;
+    success: boolean;
+    data: {
+        timeData: string[];
+        channelData: TableDataItem[];
+    };
+}
 
-        for (let i = 0; i < 300; i++) {
-            // 模拟脑电信号
-            const value = baseAmplitude * Math.sin(frequency * i) + (Math.random() - 0.5) * 10
-            data.push(parseFloat(value.toFixed(2)))
+// 时间和通道数据
+const timeData = ref<string[]>([])
+const tableData = ref<TableDataItem[]>([])
+
+async function fetchEEGData() {
+    try{
+        const response = await HttpManager.getEEGDataOfUser({
+            userId: userId.value,
+            // dataPoints根据需要输入，没有时使用设置的默认值
+            // dataPoints: 300,
+        }) as unknown as EEGResponse;
+
+        if (response.success) {
+
+            // 更新时间和通道数据
+            timeData.value = response.data.timeData;
+            tableData.value = response.data.channelData;
+
+            // channelNames.value = response.data.channelData.map(item => item.name);
+            
+            // 重新初始化图表
+
+            // 添加短暂延迟确保DOM更新完成
+            setTimeout(() => {
+                if (chartRef.value) {
+                    chartRef.value.style.height = `${getChartHeight(tableData.value.length)}px`;
+                }
+                initChart();
+            }, 100);
+
+        } else {
+            console.error('获取脑电数据失败:', response.message);
+            // 可以在这里添加错误处理，比如显示提示信息
         }
 
-        return { name, data }
-    })
+    } catch (error) {
+        console.error('获取脑电数据时出错:', error);
+    }
 }
-
-const tableData = ref<TableDataItem[]>(generateEEGData())
 
 // ===========================> 渲染图表
 // 初始化图表的方法
 const initChart = () => {
     
-    if (!chartRef.value) return
+    if (!chartRef.value || tableData.value.length === 0) return
 
     // 初始化 echarts 实例
+    if (chartInstance) {
+        chartInstance.dispose();
+    }
     chartInstance = echarts.init(chartRef.value)
+
+    chartRef.value.style.height = `${getChartHeight(tableData.value.length)}px`;
 
     // 配置项
     const option: echarts.EChartsOption = {
@@ -248,6 +354,7 @@ const initChart = () => {
                 fontSize: 15,
                 padding: [0, 0, -50, -50],
                 color: colorArray.value[index]
+                //index → index % colorArray.value.length 使用模运算防止颜色数组越界
             },
             // Y 轴刻度是否反向
             inverse: false,
@@ -350,11 +457,17 @@ const resizeChart = () => {
 // 组件挂载后执行初始化
 onMounted(() => {
     nextTick(() => {
+        getCollection(userId.value);
+
+        // 获取脑电数据
+        fetchEEGData();
+
         // 设置图表容器高度
-        if (chartRef.value) {
-            chartRef.value.style.height = `${getChartHeight(tableData.value.length)}px`
-        }
-        initChart()
+        // if (chartRef.value) {
+        //     chartRef.value.style.height = `${getChartHeight(tableData.value.length)}px`
+        // }
+
+        // initChart()
         // 监听窗口大小变化事件以支持响应式
         window.addEventListener('resize', resizeChart)
     })
@@ -368,7 +481,8 @@ onBeforeUnmount(() => {
 
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
 
 .header{
     margin: 40px;
@@ -387,8 +501,9 @@ onBeforeUnmount(() => {
 
 .SongSheet{
     margin-left: 40px;
-    width: 720;
-    height: 450px;
+    width: 600px;
+    height: auto;
+    // padding-top: $header-height + 150px;60+150px
 }
 
 .EEGwave{
@@ -414,4 +529,17 @@ onBeforeUnmount(() => {
     /* justify-content: center; */
 }
 
+// 响应式设计
+
+@media screen and (min-width: $sm) {
+    .personal-body {
+        padding: 0px 100px;
+    }
+}
+
+@media screen and (max-width: $sm) {
+    .edit-info {
+        display: none;
+    }
+}
 </style>
