@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.Twebubble.musicure.mapper.EEGDataMapper">
+  <resultMap id="BaseResultMap" type="io.github.Twebubble.musicure.model.domain.EEGData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="timestamp" jdbcType="TIME" property="timestamp" />
+    <result column="value" jdbcType="DOUBLE" property="value" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, channel, timestamp, value
+  </sql>
+  <select id="selectDistinctChannels" resultType="java.lang.String">
+    SELECT DISTINCT channel
+    FROM eeg_data
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+    ORDER BY channel
+  </select>
+  <select id="selectLatestTimestamp" resultType="java.time.LocalTime">
+    SELECT MAX(timestamp)
+    FROM eeg_data
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserAndChannelAndTimeRange" parameterType="map" resultMap="BaseResultMap" resultType="io.github.Twebubble.musicure.model.domain.EEGData">
+    SELECT *
+    FROM eeg_data
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+      AND channel = #{channel}
+      AND timestamp BETWEEN #{startTime,jdbcType=TIME} AND #{latestTimestamp,jdbcType=TIME}
+    ORDER BY timestamp
+  </select>
+  <!--  <sql id="Example_Where_Clause">-->
+<!--    <where>-->
+<!--      <foreach collection="oredCriteria" item="criteria" separator="or">-->
+<!--        <if test="criteria.valid">-->
+<!--          <trim prefix="(" prefixOverrides="and" suffix=")">-->
+<!--            <foreach collection="criteria.criteria" item="criterion">-->
+<!--              <choose>-->
+<!--                <when test="criterion.noValue">-->
+<!--                  and ${criterion.condition}-->
+<!--                </when>-->
+<!--                <when test="criterion.singleValue">-->
+<!--                  and ${criterion.condition} #{criterion.value}-->
+<!--                </when>-->
+<!--                <when test="criterion.betweenValue">-->
+<!--                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+<!--                </when>-->
+<!--                <when test="criterion.listValue">-->
+<!--                  and ${criterion.condition}-->
+<!--                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">-->
+<!--                    #{listItem}-->
+<!--                  </foreach>-->
+<!--                </when>-->
+<!--              </choose>-->
+<!--            </foreach>-->
+<!--          </trim>-->
+<!--        </if>-->
+<!--      </foreach>-->
+<!--    </where>-->
+<!--  </sql>-->
+<!--  <select id="selectByExample" parameterType="io.github.Twebubble.musicure.service.impl.EEGDataServiceImpl" resultMap="BaseResultMap">-->
+<!--    select-->
+<!--    <if test="distinct">-->
+<!--      distinct-->
+<!--    </if>-->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from eeg_data-->
+<!--    <if test="_parameter != null">-->
+<!--      <include refid="Example_Where_Clause" />-->
+<!--    </if>-->
+<!--    <if test="orderByClause != null">-->
+<!--      order by ${orderByClause}-->
+<!--    </if>-->
+<!--  </select>-->
+<!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+<!--    select-->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from eeg_data-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+<!--    delete from eeg_data-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </delete>-->
+<!--  <insert id="insert" parameterType="io.github.Twebubble.musicure.model.domain.EEGData">-->
+<!--    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+<!--    insert into eeg_data (user_id, channel, timestamp, -->
+<!--      value)-->
+<!--    values (#{userId,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIME}, -->
+<!--      #{value,jdbcType=DOUBLE})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="io.github.Twebubble.musicure.model.domain.EEGData">-->
+<!--    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+<!--    insert into eeg_data-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="userId != null">-->
+<!--        user_id,-->
+<!--      </if>-->
+<!--      <if test="channel != null">-->
+<!--        channel,-->
+<!--      </if>-->
+<!--      <if test="timestamp != null">-->
+<!--        timestamp,-->
+<!--      </if>-->
+<!--      <if test="value != null">-->
+<!--        value,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="userId != null">-->
+<!--        #{userId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="channel != null">-->
+<!--        #{channel,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="timestamp != null">-->
+<!--        #{timestamp,jdbcType=TIME},-->
+<!--      </if>-->
+<!--      <if test="value != null">-->
+<!--        #{value,jdbcType=DOUBLE},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="io.github.Twebubble.musicure.model.domain.EEGData">-->
+<!--    update eeg_data-->
+<!--    <set>-->
+<!--      <if test="userId != null">-->
+<!--        user_id = #{userId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="channel != null">-->
+<!--        channel = #{channel,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="timestamp != null">-->
+<!--        timestamp = #{timestamp,jdbcType=TIME},-->
+<!--      </if>-->
+<!--      <if test="value != null">-->
+<!--        value = #{value,jdbcType=DOUBLE},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="io.github.Twebubble.musicure.model.domain.EEGData">-->
+<!--    update eeg_data-->
+<!--    set user_id = #{userId,jdbcType=INTEGER},-->
+<!--      channel = #{channel,jdbcType=VARCHAR},-->
+<!--      timestamp = #{timestamp,jdbcType=TIME},-->
+<!--      value = #{value,jdbcType=DOUBLE}-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
+</mapper>

@@ -4,7 +4,7 @@ spring:
     host: smtp.qq.com  # QQ 邮箱 SMTP 服务器
     port: 465          # SSL 加密端口
     username: twelvebubble@qq.com  # 完整的 QQ 邮箱地址
-    password:   # QQ 邮箱授权码
+    password: ursoiievlsexdjgf  # QQ 邮箱授权码
     protocol: smtps    # QQ 邮箱要求使用 SMTPS 协议
     properties:
       mail:

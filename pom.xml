@@ -233,7 +233,7 @@
 <!--                    &lt;!&ndash;存在mapper就覆写&ndash;&gt;-->
 <!--                    <overwrite>true</overwrite>-->
 <!--                    &lt;!&ndash; 添加 Java 17+ 支持 &ndash;&gt;-->
-<!--                    &lt;!&ndash;                    <jvmArguments>&#45;&#45;enable-preview</jvmArguments>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <jvmArguments>&#45;&#45;enable-preview</jvmArguments>&ndash;&gt;-->
 <!--                </configuration>-->
 <!--                <executions>-->
 <!--                    <execution>-->

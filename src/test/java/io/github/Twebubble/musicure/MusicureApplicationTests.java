@@ -1,6 +1,7 @@
 package io.github.Twebubble.musicure;
 
 import io.github.Twebubble.musicure.model.domain.Consumer;
+import io.github.Twebubble.musicure.service.EEGDataService;
 import io.github.Twebubble.musicure.service.impl.ConsumerServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,8 +20,16 @@ public class MusicureApplicationTests {
     // private SongServiceImpl songService;
     // private SingerServiceImpl singerService;
     // private SongListServiceImpl songListService;
-    private ConsumerServiceImpl consumerService;
+//    private ConsumerServiceImpl consumerService;
     // private RankListServiceImpl rankListService;
+    private EEGDataService eegDataService;
+
+    @Test
+    public void eegDataTest()
+    {
+        Integer userId = 1;
+        System.out.println(eegDataService.getEEGDataByUserId(userId,300));
+    }
 
 //    @Test
 //    void contextLoads() {
@@ -109,9 +118,9 @@ public class MusicureApplicationTests {
 
     // 用户
 
-    @Test
-    public void consumerTest2()
-    {
-        System.out.println(consumerService.allUser());
-    }
+//    @Test
+//    public void consumerTest2()
+//    {
+//        System.out.println(consumerService.allUser());
+//    }
 }
