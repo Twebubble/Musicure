@@ -2,7 +2,9 @@ package io.github.Twebubble.musicure;
 
 import io.github.Twebubble.musicure.model.domain.Consumer;
 import io.github.Twebubble.musicure.service.EEGDataService;
+import io.github.Twebubble.musicure.service.SongService;
 import io.github.Twebubble.musicure.service.impl.ConsumerServiceImpl;
+import io.github.Twebubble.musicure.service.impl.SongServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +19,25 @@ import java.util.Date;
 public class MusicureApplicationTests {
 
     @Autowired
-    // private SongServiceImpl songService;
+//     private SongServiceImpl songService;
     // private SingerServiceImpl singerService;
     // private SongListServiceImpl songListService;
 //    private ConsumerServiceImpl consumerService;
     // private RankListServiceImpl rankListService;
-    private EEGDataService eegDataService;
+//    private EEGDataServiceImpl eegDataService;
+    private SongService songService;
 
     @Test
-    public void eegDataTest()
-    {
-        Integer userId = 1;
-        System.out.println(eegDataService.getEEGDataByUserId(userId,300));
+    public void songTest(){
+        System.out.println(songService.allSong());
     }
+
+//    @Test
+//    public void eegDataTest()
+//    {
+//        Integer userId = 1;
+//        System.out.println(eegDataService.getEEGDataByUserId(userId,300));
+//    }
 
 //    @Test
 //    void contextLoads() {

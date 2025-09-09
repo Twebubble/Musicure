@@ -17,6 +17,10 @@ public class Song {
 
     private String name;
 
+    private double arousal;
+
+    private double valence;
+
     private String introduction;
 
     @TableField(fill = FieldFill.INSERT)

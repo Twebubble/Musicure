@@ -13,6 +13,10 @@ public class SongRequest {
 
     private String name;
 
+    private double arousal;
+
+    private double valence;
+
     private String introduction;
 
     private Date createTime;

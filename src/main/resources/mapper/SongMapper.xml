@@ -5,6 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="singer_id" jdbcType="INTEGER" property="singerId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="arousal" jdbcType="DOUBLE" property="arousal" />
+    <result column="valence" jdbcType="DOUBLE" property="valence" />
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -15,7 +17,7 @@
     <result column="lyric" jdbcType="LONGVARCHAR" property="lyric" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, singer_id, name, introduction, create_time, update_time, pic, url
+    id, singer_id, name, arousal, valence, introduction, create_time, update_time, pic, url
   </sql>
   <sql id="Blob_Column_List">
     lyric

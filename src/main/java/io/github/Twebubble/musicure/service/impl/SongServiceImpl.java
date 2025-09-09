@@ -14,6 +14,7 @@ import io.minio.errors.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -224,5 +225,6 @@ public class SongServiceImpl extends ServiceImpl<SongMapper, Song> implements So
             return R.error("更新失败");
         }
     }
-
+    //Redis缓存，减少查询资源消耗
+    //@Cacheable(value = "", key = "")
 }
