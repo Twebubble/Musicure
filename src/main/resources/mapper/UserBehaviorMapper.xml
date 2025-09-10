@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.Twebubble.musicure.mapper.UserBehaviorMapper">
+
+    <resultMap id="UserSongBehaviorResultMap" type="io.github.Twebubble.musicure.model.domain.UserSongBehavior">
+        <result column="user_id" property="userId" />
+        <result column="song_id" property="songId" />
+        <result column="behavior_type" property="behaviorType" />
+        <result column="first_interact_time" property="firstInteractTime" />
+    </resultMap>
+
+    <!-- 查询用户对歌曲的收藏/评论行为（去重+合并） -->
+    <select id="listUserSongBehaviors" resultMap="UserSongBehaviorResultMap">
+        SELECT
+            user_id,
+            song_id,
+            behavior_type,
+            MIN(create_time) AS first_interact_time
+        FROM (
+                 -- 子查询1：从comment表提取「用户-歌曲」评论行为
+                 SELECT
+                     user_id,
+                     song_id,
+                     1 AS behavior_type,
+                     create_time
+                 FROM comment
+                 WHERE
+                     type = 0 -- 根据您的业务，type=0表示歌曲
+                   AND song_id IS NOT NULL
+                   AND content IS NOT NULL
+                 UNION ALL
+                 -- 子查询2：从collect表提取「用户-歌曲」收藏行为
+                 SELECT
+                     user_id,
+                     song_id,
+                     2 AS behavior_type,
+                     create_time
+                 FROM collect
+                 WHERE
+                     type = 0 -- 根据您的业务，type=0表示歌曲
+                   AND song_id IS NOT NULL
+             ) AS user_song_behavior
+        GROUP BY user_id, song_id, behavior_type
+    </select>
+
+</mapper>

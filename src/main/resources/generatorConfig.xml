@@ -66,17 +66,28 @@
                         tableName  表名
                         domainObjectName    实体类名称-->
         <!-- 禁用危险操作 -->
-                <table tableName="eeg_data"
-                       domainObjectName="EEGData"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="true">
-                    <!--表字段转驼峰命名-->
-                    <property name="useActualColumnNames" value="false"/>
-                    <!-- 自增主键配置 -->
-                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                </table>
+        <table tableName="emotion"
+               domainObjectName="Emotion"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true">
+            <!--表字段转驼峰命名-->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 自增主键配置 -->
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+<!--                <table tableName="eeg_data"-->
+<!--                       domainObjectName="EEGData"-->
+<!--                       enableCountByExample="false"-->
+<!--                       enableUpdateByExample="false"-->
+<!--                       enableDeleteByExample="false"-->
+<!--                       enableSelectByExample="true">-->
+<!--                    &lt;!&ndash;表字段转驼峰命名&ndash;&gt;-->
+<!--                    <property name="useActualColumnNames" value="false"/>-->
+<!--                    &lt;!&ndash; 自增主键配置 &ndash;&gt;-->
+<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--                </table>-->
 
         <!--        <table tableName="admin"-->
 <!--               domainObjectName="Admin"-->
