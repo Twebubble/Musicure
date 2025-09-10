@@ -4,6 +4,7 @@ import io.github.Twebubble.musicure.model.domain.Consumer;
 import io.github.Twebubble.musicure.service.EEGDataService;
 import io.github.Twebubble.musicure.service.SongService;
 import io.github.Twebubble.musicure.service.impl.ConsumerServiceImpl;
+import io.github.Twebubble.musicure.service.impl.EmotionServiceImpl;
 import io.github.Twebubble.musicure.service.impl.SongServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,12 +26,19 @@ public class MusicureApplicationTests {
 //    private ConsumerServiceImpl consumerService;
     // private RankListServiceImpl rankListService;
 //    private EEGDataServiceImpl eegDataService;
-    private SongService songService;
+//    private SongServiceImpl songService;
+    private EmotionServiceImpl emotionService;
 
     @Test
-    public void songTest(){
-        System.out.println(songService.allSong());
+    public void emotionTest(){
+        long userId = 1;
+        System.out.println(emotionService.getLatestEmotionByUserId(userId));
     }
+
+//    @Test
+//    public void songTest(){
+//        System.out.println(songService.allSong());
+//    }
 
 //    @Test
 //    public void eegDataTest()
